@@ -1,0 +1,75 @@
+//next greater element to the left
+
+def next_greatest_left(arr):
+    s = []
+    res = [-1] * len(arr)
+    
+    for i in range(len(arr)):
+        while s and arr[s[-1]] < arr[i]:
+            res[s.pop()] = arr[i]
+        s.append(i)
+    
+    return res
+
+
+//next greater element to the right
+
+def next_greatest_element_right(arr):
+    s = []
+    res = [-1] * len(arr)
+    for i in range(len(arr)):
+        while s and arr[s[-1]] < arr[i]:
+            res[s[-1]] = arr[i]
+            s.pop()
+        s.append(i)
+    return res
+
+//next smallest  element to the left
+
+
+def next_smallest_element_left(arr):
+    n = len(arr)
+    res = [-1] * n
+    s = []
+    for i in range(n):
+        while s and arr[i] < arr[s[-1]]:
+            res[s.pop()] = arr[i]
+        s.append(i)
+    return res
+
+//next smallest  element to the right
+
+
+def next_smallest_element_right(arr):
+    s = []
+    res = [-1] * len(arr)
+    for i in range(len(arr)-1, -1, -1):
+        while s and arr[i] < s[-1]:
+            s.pop()
+        if s:
+            res[i] = s[-1]
+        s.append(arr[i])
+    return res
+
+
+
+
+
+//valid parenthesis
+
+def isValidParenthesis(s):
+    stack = []
+    for b in s:
+        if b == '(' or b == '[' or b == '{':
+            stack.append(c)
+        elif len(stack) == 0:
+            return False
+        elif b == ')' and stack[-1] == '(':
+            stack.pop()
+        elif b == ']' and stack[-1] == '[':
+            stack.pop()
+        elif b == '}' and stack[-1] == '{':
+            stack.pop()
+        else:
+            return False
+    return len(stack) == 0
